@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="/js/carApp.js"></script>
+  <script src="/js/carController.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/carStyle.css">
+</head>
+
+<body ng-app="carApp">
+
+<h1>CAR INVENTORY</h1>
+
+<div ng-controller="carController">
+
+  <div>
+    <h5>Filter: </h5>
+    <form>
+      <select ng-model="filterValue">
+        <option value="">By Name</option>
+        <option ng-repeat="car in cars | unique:'name'" value="{{car.name}}">{{car.name}}</option>
+      </select>
+      <select ng-model="filterValue" >
+        <option value="">By Model</option>
+        <option ng-repeat="car in cars | unique:'model'" value="{{car.model}}">{{car.model}}</option>
+      </select>
+      <select ng-model="filterValue" >
+        <option value="">By Color</option>
+        <option ng-repeat="car in cars | unique:'color'" value="{{car.color}}">{{car.color}}</option>
+      </select>
+      <select ng-model="filterValue" >
+        <option value="">By Engine</option>
+        <option ng-repeat="car in cars | unique:'engine'" value="{{car.engine}}">{{car.engine}}</option>
+      </select>
+      <select ng-model="rangeValue">
+        <option value="">By Mileage</option>
+        <option value="tens">0-99</option>
+        <option value="hundreds">100-999</option>
+        <option value="thousands">1000-9999</option>
+        <option value="tenthousands">10000-99999</option>
+      </select>
+    </form>
+
+  </div>
+
+  <div class="table">
+    <table>
+      <tr>
+        <th ng-click="orderByField='name'"><a href="">NAME</a></th>
+        <th ng-click="orderByField='model'"><a href="">MODEL</a></th>
+        <th ng-click="orderByField='color'"><a href="">COLOR</a></th>
+        <th ng-click="orderByField='engine'"><a href="">ENGINE</a></th>
+        <th ng-click="orderByField='mileage'"><a href="">MILEAGE</a></th>
+      </tr>
+      <tr ng-repeat="car in cars | filter:filterValue | orderBy:orderByField">
+        <td>{{ car.name }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.engine }}</td>
+        <td>{{ car.mileage }}</td>
+      </tr>
+    </table>
+  </div>
+
+
+</div>
+
+
+
+</body>
+</html>

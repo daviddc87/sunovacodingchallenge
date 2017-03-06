@@ -1,0 +1,23 @@
+body {
+  font-family: 'Arial', 'Verdana';
+}
+
+.table {
+  height: 350px;
+  width: 700px;
+  background-color: #f0f0f5;
+  padding: 10px 10px;
+  margin: 10px 10px;
+}
+
+tr th a {
+  color: #ff471a;
+}
+
+tr th a:hover {
+  color: #000;
+}
+
+tr td, tr th {
+  text-align: center;
+}
